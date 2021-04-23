@@ -128,9 +128,21 @@ show_histogram_svg(const vector<size_t>& bins)
     cin >> fill;
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     svg_text(TEXT_LEFT, TEXT_BASELINE, to_string(bins[0]));
+    size_t max_count = 0;
     for (size_t bin : bins)
     {
-        const double bin_width = BLOCK_WIDTH * bin;
+        if (bin > max_count)
+        {
+            max_count = bin;
+        }
+    }
+    double scaling_factor = 1;
+    const bool scaling_needed = max_count*BLOCK_WIDTH > IMAGE_WIDTH;
+    if (scaling_needed)
+        scaling_factor = (double)((IMAGE_WIDTH - TEXT_WIDTH) / BLOCK_WIDTH) / max_count;
+    for (size_t bin : bins)
+    {
+        const double bin_width = BLOCK_WIDTH * bin*scaling_factor;
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,colour,fill);
         top += BIN_HEIGHT;
