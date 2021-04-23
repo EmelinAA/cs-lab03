@@ -4,6 +4,7 @@
 #include <string>;
 
 using namespace std;
+bool svg_check(double block_width);
 void svg_end();
 void svg_begin(double width, double height);
 void svg_text(double left, double baseline, string text);
