@@ -36,7 +36,7 @@ void svg_rect(double x, double y, double width, double height, string line_colou
     cout << "<rect x='" << x << "' y='" << y << "' width='" << width << "' height='" << height << "' stroke='" << line_colour << "' fill='#" << fill << "'/>";
 }
 
-void show_histogram_svg(const vector<size_t>& bins)
+void show_histogram_svg(const vector<size_t>& bins,double block_width)
 {
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
@@ -51,9 +51,6 @@ void show_histogram_svg(const vector<size_t>& bins)
     cin >> colour;
     cerr << "Enter column fill: ";
     cin >> fill;
-    double block_width;
-    cerr << "Enter block_width: ";
-    cin >> block_width;
     while (svg_check(block_width) == false)
     {
         cerr << "Enter block_width(in range from 3 to 30): ";
