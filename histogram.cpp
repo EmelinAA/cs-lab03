@@ -5,6 +5,7 @@ using namespace std;
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 
+
 void find_minmax(const vector<double> &numbers, double& min, double& max)
 {
     if (numbers.size() == 0)
@@ -32,7 +33,23 @@ vector<double> input_numbers(istream& in,size_t count)
     }
     return result;
 }
-vector<size_t> make_histogram(const vector<double> &numbers,size_t &bin_count)
+
+Input read_input(istream& in)
+{
+    Input data;
+    cerr << "Enter number count: ";
+    size_t number_count;
+    in >> number_count;
+    cerr << "Enter numbers: ";
+    data.numbers = input_numbers(in, number_count);
+    cerr << "Enter bin count: ";
+    in >> data.bin_count;
+    return data;
+}
+
+
+
+vector<size_t> make_histogram(const vector<double> &numbers, size_t &bin_count)
 {
     double min, max;
     find_minmax(numbers,min,max);
