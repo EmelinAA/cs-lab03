@@ -13,7 +13,7 @@ int main()
     if (number_count == 0)
         return 1;
     cerr << "Enter numbers: ";
-    const auto numbers = input_numbers(number_count);
+    const auto numbers = input_numbers(cin,number_count);
     size_t bin_count;
     cerr << "Enter column count: ";
     cin >> bin_count;
