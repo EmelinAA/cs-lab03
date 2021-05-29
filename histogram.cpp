@@ -34,7 +34,7 @@ vector<double> input_numbers(istream& in,size_t count)
     return result;
 }
 
-Input read_input(istream& in)
+Input read_input(istream& in, bool prompt)
 {
     Input data;
     cerr << "Enter number count: ";
@@ -49,7 +49,7 @@ Input read_input(istream& in)
 
 
 
-vector<size_t> make_histogram(Input &data)
+vector<size_t> make_histogram(const Input& data)
 {
     double min, max;
     find_minmax(data.numbers,min,max);
