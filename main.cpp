@@ -10,7 +10,7 @@ int main()
     size_t number_count;
     size_t bin_count;
     Input data = read_input(cin);
-    const auto bins = make_histogram(data.numbers, data.bin_count);
+    const auto bins = make_histogram(data);
     show_histogram_text(bins);
     //show_histogram_svg(bins);
     return 0;

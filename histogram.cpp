@@ -49,15 +49,15 @@ Input read_input(istream& in)
 
 
 
-vector<size_t> make_histogram(const vector<double> &numbers, size_t &bin_count)
+vector<size_t> make_histogram(Input &data)
 {
     double min, max;
-    find_minmax(numbers,min,max);
-    vector <size_t> bins(bin_count);
-    for (double number : numbers)
+    find_minmax(data.numbers,min,max);
+    vector <size_t> bins(data.bin_count);
+    for (double number : data.numbers)
     {
-        size_t bin = (size_t)((number - min) / (max - min) * bin_count);
-        if (bin == bin_count)
+        size_t bin = (size_t)((number - min) / (max - min) * data.bin_count);
+        if (bin == data.bin_count)
         {
             bin--;
         }
