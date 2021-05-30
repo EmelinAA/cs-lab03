@@ -44,12 +44,10 @@ Input read_input(istream& in, bool prompt)
     data.numbers = input_numbers(in, number_count);
     cerr << "Enter bin count: ";
     in >> data.bin_count;
-   // cerr << "Enter bin_width: ";
-   // in >> data.block_width;
+    cerr << "Enter bin_width: ";
+    in >> data.block_width;
     return data;
 }
-
-
 
 vector<size_t> make_histogram(const Input& data)
 {

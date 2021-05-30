@@ -1,6 +1,9 @@
 #include <string>
 #include "svg.h"
 #include <iostream>
+#include <windows.h>
+#include <string>
+#include <sstream>
 using namespace std;
 
 bool svg_check(double block_width)
@@ -24,6 +27,27 @@ svg_begin(double width, double height)
     cout << "height='" << height << "' ";
     cout << "viewBox='0 0 " << width << " " << height << "' ";
     cout << "xmlns='http://www.w3.org/2000/svg'>\n";
+}
+string make_info_text()
+{
+    stringstream buffer;
+    DWORD info = GetVersion();
+    DWORD mask = 0x0000ffff;
+    DWORD platform = info >> 16;
+    DWORD mask2 = 0x000000ff;
+    DWORD version =info & mask;
+    if ((info & 0x80000000) == 0)
+    {
+        DWORD version_minor = version>>8;
+        DWORD version_major = version &mask2;
+        DWORD build = platform;
+        char lpBuffer[MAX_COMPUTERNAME_LENGTH + 1];
+        DWORD si = MAX_COMPUTERNAME_LENGTH+1;
+        GetComputerNameA(lpBuffer, &si);
+        buffer<<"Windows v."<<version_major<<"."<<version_minor<<"(build "<<build<<")"<<endl;
+        buffer<<"Computer name:"<<lpBuffer;
+        return buffer.str();
+    }
 }
 
 void svg_text(double left, double baseline, string text)
@@ -79,5 +103,6 @@ void show_histogram_svg(const vector<size_t>& bins,double block_width)
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, colour, fill);
         top += BIN_HEIGHT;
     }
+    svg_text(TEXT_LEFT, top + TEXT_BASELINE,make_info_text());
     svg_end();
 }

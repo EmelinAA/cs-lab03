@@ -2,14 +2,14 @@
 #include <vector>
 #include "svg.h"
 #include "histogram.h"
+#include <windows.h>
 #include <curl/curl.h>
 #include <sstream>
 #include <string>
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 using namespace std;
-size_t
-write_data(void* items, size_t item_size, size_t item_count, void* ctx)
+size_t write_data(void* items, size_t item_size, size_t item_count, void* ctx)
 {
     size_t data_size =item_size * item_count;
     stringstream* buffer = reinterpret_cast<stringstream*>(ctx);
@@ -40,6 +40,7 @@ Input download(const string& address)
     }
     return read_input(buffer, false);
 }
+
 int main(int argc, char* argv[])
 {
     Input input;
