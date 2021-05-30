@@ -2,11 +2,18 @@
 #include <vector>
 #include "svg.h"
 #include "histogram.h"
+#include <windows.h>
+
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 using namespace std;
+
 int main()
 {
+   DWORD WINAPI GetVersion(void);;
+    printf("10x version is %u.\n", GetVersion() );
+    printf("16x version is %08x \n", GetVersion() );
+    return (0);
     size_t number_count;
     cerr << "Enter number count: ";
     cin >> number_count;
