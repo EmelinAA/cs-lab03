@@ -31,7 +31,10 @@ Input download(const string& address)
         res = curl_easy_perform(curl);
         if(res!=0)
         {
-            cerr<<curl_easy_strerror(res);
+            cerr<<curl_easy_strerror(res)<<endl;
+            auto data = curl_version_info(CURLVERSION_NOW);
+            cerr<<(*data).ssl_version<<endl;
+            cerr<<(*data).version<<endl;
             exit(1);
         }
         curl_easy_cleanup(curl);
