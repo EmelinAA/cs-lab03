@@ -2,7 +2,6 @@
 #include "svg.h"
 #include <iostream>
 #include <windows.h>
-#include <string>
 #include <sstream>
 using namespace std;
 
@@ -72,16 +71,6 @@ void show_histogram_svg(const vector<size_t>& bins,double block_width)
     double top = 0;
     string colour="red";
     string fill="FFFFFF";
-    //cerr << "Enter line colour: ";
-   // cin >> colour;
-    //cerr << "Enter column fill: ";
-   // cin >> fill;
-   /* while (svg_check(block_width) == false)
-    {
-        cerr << "Enter block_width(in range from 3 to 30): ";
-        cin >> block_width;
-        svg_check(block_width);
-    }*/
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     svg_text(TEXT_LEFT, TEXT_BASELINE, to_string(bins[0]));
     size_t max_count = 0;
