@@ -7,7 +7,7 @@ struct Input
 {
 vector <double> numbers;
 size_t bin_count;
-double block_width;
+double block_width=10;
 } ;
 void find_minmax(const vector<double>& numbers, double& min, double& max);
 vector<double> input_numbers(istream& in,size_t count);

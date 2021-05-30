@@ -20,7 +20,6 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx)
 Input download(const string& address)
 {
     stringstream buffer;
-    curl_global_init(CURL_GLOBAL_ALL);
     CURL *curl = curl_easy_init();
     if(curl)
     {
@@ -29,12 +28,12 @@ Input download(const string& address)
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         res = curl_easy_perform(curl);
+        auto data = curl_version_info(CURLVERSION_NOW);
+            cerr<<(*data).ssl_version<<endl;
+            cerr<<(*data).version<<endl;
         if(res!=0)
         {
             cerr<<curl_easy_strerror(res)<<endl;
-            auto data = curl_version_info(CURLVERSION_NOW);
-            cerr<<(*data).ssl_version<<endl;
-            cerr<<(*data).version<<endl;
             exit(1);
         }
         curl_easy_cleanup(curl);
@@ -44,6 +43,7 @@ Input download(const string& address)
 int main(int argc, char* argv[])
 {
     Input input;
+    curl_global_init(CURL_GLOBAL_ALL);
     if (argc > 1)
     {
         input = download(argv[1]);
