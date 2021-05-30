@@ -11,9 +11,19 @@ using namespace std;
 int main()
 {
     DWORD info = GetVersion();
-    DWORD mask = 0b00000000'00000000'11111111'11111111;
-    DWORD version = info & mask;
-    printf("16x version is %08x \n", version );
+    DWORD mask = 0x0000ffff;
+    DWORD platform = info >> 16;
+    DWORD mask2 = 0x000000ff;
+    DWORD version =info & mask;
+    if ((info & 0xf0000000) == 0)
+    {
+        DWORD version_minor = version>>8;
+        DWORD version_major = version &mask2;
+        DWORD build = platform;
+ printf("Windows v.%u.%u (build %u)",version_major,version_minor,build);
+
+    }
+   // printf("16x version is %08x \n", version );
     return (0);
     size_t number_count;
     cerr << "Enter number count: ";
