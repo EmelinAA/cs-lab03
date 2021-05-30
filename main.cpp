@@ -7,11 +7,6 @@ const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 using namespace std;
 int main()
 {
-    const char* name = "Commander Shepard";
-    int year = 2154;
-    printf("%s was born in %d.\n", name, year);
-// Commander Shepard was born in 2154.
-    return (0);
     size_t number_count;
     cerr << "Enter number count: ";
     cin >> number_count;
